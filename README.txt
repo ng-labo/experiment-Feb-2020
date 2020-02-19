@@ -1,0 +1,3 @@
+- measure the latency between my vps instances.
+- each node sends small packets periodicly and continuously, each node receives and record them of the timestamp.
+- estimate delay insight from figures.
