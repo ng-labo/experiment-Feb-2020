@@ -35,15 +35,16 @@ int main(int ac, char **av)
     memset(buf, 0, sizeof(buf));
     recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr*) &fromaddr, &fromaddrlen);
     gettimeofday(&nextclock, NULL);
+    /*
     long sec = nextclock.tv_sec - lastclock.tv_sec;
     long usec = nextclock.tv_usec - lastclock.tv_usec;
     if(usec<0){
       sec -= 1;
       usec += 1000000;
-    }
+    } */
     inet_ntop(AF_INET, &(fromaddr.sin_addr), ipaddrbuf, sizeof(ipaddrbuf));
-    printf("%s,%s,%ld:%ld,%ld:%ld\n", ipaddrbuf, buf, nextclock.tv_sec, nextclock.tv_usec, sec, usec);
-    lastclock = nextclock;
+    printf("%s,%s,%ld,%ld,-\n", ipaddrbuf, buf, nextclock.tv_sec, nextclock.tv_usec);//, sec, usec);
+    //lastclock = nextclock;
   }
 
  close(sock);
