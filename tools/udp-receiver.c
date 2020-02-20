@@ -28,12 +28,12 @@ int main(int ac, char **av)
   gettimeofday(&lastclock, NULL);
 
   struct sockaddr_in fromaddr;
-  socklen_t fromaddrlen;
+  int fromaddrsize = sizeof(struct sockaddr);
   char ipaddrbuf[64];
 
   while(1){
     memset(buf, 0, sizeof(buf));
-    recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr*) &fromaddr, &fromaddrlen);
+    recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr*) &fromaddr, &fromaddrsize);
     gettimeofday(&nextclock, NULL);
     /*
     long sec = nextclock.tv_sec - lastclock.tv_sec;
